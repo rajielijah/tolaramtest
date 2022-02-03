@@ -19,7 +19,8 @@ class _MyAppsState extends State<MyApps> {
       _markers.clear();
         final marker = Marker(
           markerId: MarkerId(locations!.name),
-          position: const LatLng(3,4),
+          //lat and long coming from the endpoint is String and it's suppose to be double(decimal), that's why I can't put it here
+          position: const LatLng(3, 4),
           infoWindow: InfoWindow(
             title: locations.name,
             snippet: locations.name,
@@ -35,7 +36,7 @@ class _MyAppsState extends State<MyApps> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Google Office Locations'),
+          title: const Text('Locations'),
           backgroundColor: Colors.green[700],
         ),
         body: GoogleMap(
