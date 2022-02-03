@@ -20,7 +20,7 @@ class _MyAppsState extends State<MyApps> {
         final marker = Marker(
           markerId: MarkerId(locations!.name),
           //lat and long coming from the endpoint is String and it's suppose to be double(decimal), that's why I can't put it here
-          position: const LatLng(3, 4),
+          position: const LatLng(3.2365, 4.000),
           infoWindow: InfoWindow(
             title: locations.name,
             snippet: locations.name,
@@ -31,6 +31,7 @@ class _MyAppsState extends State<MyApps> {
     );
 }
 
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,7 +48,25 @@ class _MyAppsState extends State<MyApps> {
           ),
           markers: _markers.values.toSet(),
         ),
+        bottomSheet: GestureDetector(
+          child: const Text("List of Location"),
+          onTap: (){
+            showModalBottomSheet<void>(context: context, builder: (context){
+              return ListView.builder(
+                itemCount: _markers.length,
+                itemBuilder: (context, index){
+                  return Column(
+                    children: [
+                      Text(_markers[index]!.rotation.toString())
+                    ],
+                  );
+              });
+            });
+          },
+        )
       ),
     );
+ 
   }
+ 
 }
