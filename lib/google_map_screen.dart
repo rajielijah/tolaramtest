@@ -4,14 +4,14 @@ import 'package:tolaramtest/map_model.dart';
 // import 'src/locations.dart' as locations;
 
 
-class MyApps extends StatefulWidget {
-  const MyApps({Key? key}) : super(key: key);
+class GoogleMapScreen extends StatefulWidget {
+  const GoogleMapScreen({Key? key}) : super(key: key);
 
   @override
-  _MyAppsState createState() => _MyAppsState();
+  _GoogleMapScreenState createState() => _GoogleMapScreenState();
 }
 
-class _MyAppsState extends State<MyApps> {
+class _GoogleMapScreenState extends State<GoogleMapScreen> {
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locations = await Locations.instances?.getLocations();

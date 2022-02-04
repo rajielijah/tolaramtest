@@ -42,28 +42,23 @@ class Locations{
   static Locations? _instances;
   Locations._();
   static Locations? get instances {
-    if(_instances == null) {
-      _instances =  Locations._();
-    }
+    _instances ??= Locations._();
     return _instances;
   }
 Future<LatLog> getLocations() async {
   const LatLogURL = 'https://enpuyr7bafpswlw.m.pipedream.net/';
-
-  // Retrieve the LatLog of Google offices
+   final response = await http.get(Uri.parse(LatLogURL));
+  // Retrieve the LatLog from the endpoint Provided
   try {
     final response = await http.get(Uri.parse(LatLogURL));
     if (response.statusCode == 200) {
       return LatLog.fromJson(json.decode(response.body));
     }
   } catch (e) {
+    // ignore: avoid_print
     print(e);
   }
 
   // Fallback for when the above HTTP request fails.
-  return LatLog.fromJson(
-    json.decode(
-      await rootBundle.loadString('assets/LatLog.json'),
-    ),
-  );
+  return LatLog.fromJson(json.decode('${response.statusCode}'));
 }}
