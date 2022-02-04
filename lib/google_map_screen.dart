@@ -8,7 +8,7 @@ import 'package:tolaramtest/marker_api.dart';
 
   class GoogleMapScreen extends StatefulWidget {
     const GoogleMapScreen({Key? key}) : super(key: key);
-
+    
     @override
     _GoogleMapScreenState createState() => _GoogleMapScreenState();
   }
@@ -35,6 +35,12 @@ import 'package:tolaramtest/marker_api.dart';
         }
       );
   } 
+  late Future<LatLog> location;
+  @override
+    void initState(){
+      super.initState();
+      location = Locations.instances!.getLocations();
+    }
     @override
     Widget build(BuildContext context) {
       return MaterialApp(
@@ -56,15 +62,20 @@ import 'package:tolaramtest/marker_api.dart';
               child: const Text("List of Location"),
               onTap: (){
                 showModalBottomSheet<void>(context: context, builder: (context){
-                  return ListView.builder(
-                    itemCount: _markers.length,
-                    itemBuilder: (context, index){
-                      return Column(
-                        children: [
-                          Text(_markers[index]!.rotation.toString())
-                        ],
-                      );
-                  });
+                  return FutureBuilder<LatLog>(
+                    future: location,
+                    builder: (context, snapshot) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        itemBuilder: (context, index){
+                          return Column(
+                            children: [
+                              Text("${snapshot.data?.name}")
+                            ],
+                          );
+                      });
+                    }
+                  );
                 });
               },
             ),
