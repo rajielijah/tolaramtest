@@ -57,8 +57,7 @@ import 'package:tolaramtest/marker_api.dart';
             ),
             markers: _markers.values.toSet(),
           ),
-          bottomSheet: Center(
-            child: GestureDetector(
+          bottomSheet: GestureDetector(
               child: const Text("List of Location"),
               onTap: (){
                 showModalBottomSheet<void>(context: context, builder: (context){
@@ -79,7 +78,7 @@ import 'package:tolaramtest/marker_api.dart';
                 });
               },
             ),
-          )
+          
         ),
       );
   
