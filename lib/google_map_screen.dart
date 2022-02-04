@@ -24,8 +24,8 @@ import 'package:tolaramtest/marker_api.dart';
           final marker = Marker(
             markerId: MarkerId(locations.name),
             //lat and long coming from the endpoint is String and it's suppose to be double(decimal), that's why I can't put it here
-            position: const LatLng(4.3, 3.2),
-            // position: const LatLng(lat, locations.lng as double),
+            position: const LatLng(41.468233, 83.34522),
+            // position: const LatLng(locations.lat, locations.lng as double),
             infoWindow: InfoWindow(
               title: locations.name,
               snippet: locations.name,
